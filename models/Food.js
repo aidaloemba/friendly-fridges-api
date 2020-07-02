@@ -1,25 +1,36 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-const foodSchema = new Schema({
-  name: {
-      type: String,
-      required: [true, 'goal name is mandatory']
-  },
-  category: {
-      type: String,
-      required: [true, 'goal category is mandatory']
-  },
-  description: {
-      type: String
-  },
-  submissionDate: {
-      type: Date
-  },
-  location: {
-      type: String
-  }
-});
-
-const Food = mongoose.model("Food", foodSchema);
-module.exports = Food;
+module.exports = mongoose.model('Food', {
+    photo: {
+        type: String,
+        required: [true, 'Name is mandatory']
+    },
+    photoPath: {
+        type: String
+      },
+    name: {
+        type: String,
+        required: [true, 'Name is mandatory']
+    },
+    category: {
+        type: String,
+        required: [true, 'Category is mandatory']
+    },
+    description: {
+        type: String,
+        required: [true, 'Description is mandatory']
+    },
+    submissionDate: {
+        type: Date
+    },
+    location: {
+        type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    owner: {
+        type: mongoose.Schema.ObjectId, ref: 'user'
+    }
+}, 'foods');

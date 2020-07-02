@@ -1,4 +1,6 @@
 var express = require('express');
+var app = express();
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -7,12 +9,13 @@ var indexRouter = require('./routes/index');
 
 var mongoose = require("mongoose");
 require("dotenv").config();
-var createError = require('http-errors');
 var session = require('express-session');
+var morgan = require('morgan');
 const MongoStore = require('connect-mongo')(session);
 
+var createError = require('http-errors');
 
-var app = express();
+
 
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -38,6 +41,8 @@ app.use(session({
         autoRemove: 'native' // Default
     })
 }));
+
+app.use(morgan('combined'))
   
 
 app.use(logger('dev'));
@@ -50,5 +55,7 @@ app.use('/', indexRouter);
 app.use('/users', require('./routes/users'));
 app.use('/signup', require('./routes/signup'));
 app.use('/login', require('./routes/login'));
+app.use('/fridge', require('./routes/fridge'));
+app.use('/submit', require('./routes/foods/submit'));
 
 module.exports = app;

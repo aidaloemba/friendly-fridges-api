@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const User = require('../models/User');
+const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -42,9 +42,6 @@ app.post('/', (req, res, next) => {
                             postcode: req.body.postcode,
                             email: req.body.email,
                             password: hash,
-                        })
-                        .then((user) => {
-                            res.redirect('/username/fridge');
                         })
                         .catch((err) => {
                             console.log('Error', err);

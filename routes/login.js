@@ -3,20 +3,18 @@ const app = express();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
-app.get("/login", (req, res) => {
+app.get("/", (req, res) => {
   let data = {};
   res.json("login", data);
 });
 
-app.post("/login", (req, res, next) => {
+app.post("/", (req, res, next) => {
   if (req.body.email === "" || req.body.password === "") {
     res.json("login", {
       errorMessage: "Please enter both, username and email to log in.",
     });
     return;
   }
-
-  
 
   User.findOne({ email: req.body.email })
     .then((user) => {
@@ -44,7 +42,5 @@ app.post("/login", (req, res, next) => {
       next(err);
     });
 });
-
-
 
 module.exports = app;
