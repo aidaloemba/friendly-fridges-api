@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const default_image_url = "./images/default-img-food.gif";
+const user_postcode = "postcode";
 
 module.exports = mongoose.model('Food', {
-    // photo: {
-    //     type: String,
-    //     required: [true, 'Photo is mandatory']
-    // },
+    photo: {
+        type: String,
+        default: default_image_url
+    },
     // photoPath: {
     //     type: String
     //   },
@@ -25,9 +27,11 @@ module.exports = mongoose.model('Food', {
         default: Date.now
     },
     owner: {
-        type: mongoose.Schema.ObjectId, ref: 'user'
+        type: mongoose.Schema.ObjectId,
+        ref: 'users'
     },
     location: {
-        type: String
+        type: String,
+        default: user_postcode
     }
 }, 'foods');

@@ -1,13 +1,10 @@
 const express = require('express');
 const Food = require('../../models/Food');
 const app = express();
-//const uploader = require('../../configs/cloudinary-setup')
-//const cloudinaryImgUploadRollback = require('../../middleware/cloudinaryImgUploadRollback');
-// const multer = require("multer");
-// const uploader = multer({dest: 'uploads/'})
 
 app.post("/", (req,res, next)=> {
-  if(req.session.user) req.body.owner = req.session.user.id;
+  
+  if(req.session.currentUser) req.body.owner = req.session.currentUser._id;
   Food.create(req.body)
       .then((food)=> res.status(200).json(food))
       .catch(async (error)=> {            

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const default_image_url = "./images/RA3GKG.jpg";
 
 module.exports = mongoose.model('User', {
     profilePicture: {
         type: String,
-        default: "./images/RA3GKG.jpg"
+        default: default_image_url
       },
     profilePicturePath: {
         type: String
@@ -28,5 +29,9 @@ module.exports = mongoose.model('User', {
     password: {
         type: String,
         required: [true, 'Password is required.']
-    }
+    },
+    foods: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Food"
+      }]
 }, 'users');

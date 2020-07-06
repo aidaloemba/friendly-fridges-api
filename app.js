@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 var path = require('path');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
@@ -49,13 +50,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser());
 
 app.use('/', indexRouter);
 app.use('/users', require('./routes/users'));
 app.use('/signup', require('./routes/signup'));
 app.use('/login', require('./routes/login'));
 app.use('/fridge', require('./routes/fridge'));
-app.use('/latest', require('./routes/foods/foods'));
-app.use('/submit/food', require('./routes/foods/create'));
+app.use('/latest', require('./routes/food/foods'));
+app.use('/food/submit', require('./routes/food/create'));
+app.use('/food/detail', require('./routes/food/detail'));
+app.use('/food/update', require('./routes/food/update'));
 
 module.exports = app;

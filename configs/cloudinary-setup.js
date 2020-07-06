@@ -13,7 +13,7 @@ cloudinary.config({
 let storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: `foods-${process.env.ENVIRONMENT}`, // The name of the folder in cloudinary
+    folder: `food-${process.env.ENVIRONMENT}`, // The name of the folder in cloudinary
   
    // public_id: (req,file)=>{debugger}
   },
