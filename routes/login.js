@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 app.post("/", (req, res, next) => {
   if (req.body.email === "" || req.body.password === "") {
     res.json("login", {
-      errorMessage: "Please enter both, username and email to log in.",
+      errorMessage: "Please enter both, email and password to log in.",
     });
     return;
   }

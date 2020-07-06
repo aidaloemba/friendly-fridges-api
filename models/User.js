@@ -8,9 +8,6 @@ module.exports = mongoose.model('User', {
     profilePicturePath: {
         type: String
       },
-    username: {
-        type: String
-    },
     firstname: {
         type: String
     },

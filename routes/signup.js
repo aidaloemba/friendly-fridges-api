@@ -5,13 +5,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 app.get('/', (req, res) => {
-
     let data = {}
     res.json('signup', data)
 });
 
 app.post('/', (req, res, next) => {
-
+    
     let email = req.body.email;
     let password = req.body.password;
 
@@ -29,14 +28,12 @@ app.post('/', (req, res, next) => {
                 res.json({
                     errorMessage: 'Email already exists, please choose another one.'
                 });    
-            }
-            else{
+            } else {
                 
                 bcrypt.hash(password, saltRounds, function (err, hash) {
 
                     if(!err){
                         User.create({
-                            username: req.body.username,
                             firstname: req.body.firstname,
                             lastname: req.body.lastname,
                             postcode: req.body.postcode,
@@ -46,8 +43,7 @@ app.post('/', (req, res, next) => {
                         .catch((err) => {
                             console.log('Error', err);
                         });
-                    }
-                    else{
+                    } else {
                         errorMessage: 'An error occured while creating your account. Please try again later.';
                     }
 

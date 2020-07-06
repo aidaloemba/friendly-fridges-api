@@ -50,11 +50,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use('/', indexRouter);
-// app.use('/users', require('./routes/users'));
-// app.use('/signup', require('./routes/signup'));
-// app.use('/login', require('./routes/login'));
-// app.use('/fridge', require('./routes/fridge'));
-app.use('/submit', require('./routes/foods/submit'));
+app.use('/', indexRouter);
+app.use('/users', require('./routes/users'));
+app.use('/signup', require('./routes/signup'));
+app.use('/login', require('./routes/login'));
+app.use('/fridge', require('./routes/fridge'));
+app.use('/latest', require('./routes/foods/foods'));
+app.use('/submit/food', require('./routes/foods/create'));
 
 module.exports = app;

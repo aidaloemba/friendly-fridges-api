@@ -1,10 +1,16 @@
 const express = require('express');
-const app = express();
+const router = express.Router();
+const Food = require("../../models/Food")
+const createError = require('http-errors')
 
-app.get('/', (req, res) => {
-
-    let data = {}
-    res.json('foods', data)
+router.get('/', (req, res, next) => {
+    Food.find({})
+        .then((foods) => {
+            res.status(200).json(foods)
+        })
+        .catch((error) => {
+            next(createError(500))
+        })
 });
 
-module.exports = app;
+module.exports = router;

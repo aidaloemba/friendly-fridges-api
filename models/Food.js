@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 module.exports = mongoose.model('Food', {
-    photo: {
-        type: String,
-        required: [true, 'Name is mandatory']
-    },
-    photoPath: {
-        type: String
-      },
+    // photo: {
+    //     type: String,
+    //     required: [true, 'Photo is mandatory']
+    // },
+    // photoPath: {
+    //     type: String
+    //   },
     name: {
         type: String,
         required: [true, 'Name is mandatory']
@@ -20,17 +20,14 @@ module.exports = mongoose.model('Food', {
         type: String,
         required: [true, 'Description is mandatory']
     },
-    submissionDate: {
-        type: Date
-    },
-    location: {
-        type: String
-    },
     createdAt: {
         type: Date,
         default: Date.now
     },
     owner: {
         type: mongoose.Schema.ObjectId, ref: 'user'
+    },
+    location: {
+        type: String
     }
 }, 'foods');
