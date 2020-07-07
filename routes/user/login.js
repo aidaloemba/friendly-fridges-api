@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const User = require("../models/user");
+const User = require("../../models/user");
 const bcrypt = require("bcrypt");
 
 app.get("/", (req, res) => {

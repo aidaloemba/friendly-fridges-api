@@ -4,7 +4,7 @@ const Food = require('../../models/Food');
 const createError = require('http-errors');
 
 router.get('/', (req,res, next)=> {
-    debugger
+    
     Food.findById(req.params.id)
       .then((food)=> {
         if(!food) next(createError(404));

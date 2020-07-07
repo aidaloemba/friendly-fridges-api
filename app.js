@@ -29,7 +29,7 @@ mongoose
   })
 
 app.use(cors({
-    origin: true,
+    origin: [process.env.client_origin_a, process.env.client_origin_b],
     credentials: true
 }))
 
@@ -52,14 +52,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser());
 
-app.use('/', indexRouter);
-app.use('/users', require('./routes/users'));
-app.use('/signup', require('./routes/signup'));
-app.use('/login', require('./routes/login'));
-app.use('/fridge', require('./routes/fridge'));
+app.use('/users', require('./routes/user/users'));
+app.use('/signup', require('./routes/user/signup'));
+app.use('/login', require('./routes/user/login'));
+
 app.use('/latest', require('./routes/food/foods'));
 app.use('/food/submit', require('./routes/food/create'));
 app.use('/food/detail', require('./routes/food/detail'));
 app.use('/food/update', require('./routes/food/update'));
+// app.use('/fridge/delete', require('./routes/food/delete'));
+app.use('/fridge', require('./routes/food/fridge'));
 
 module.exports = app;

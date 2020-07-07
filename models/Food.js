@@ -7,9 +7,6 @@ module.exports = mongoose.model('Food', {
         type: String,
         default: default_image_url
     },
-    // photoPath: {
-    //     type: String
-    //   },
     name: {
         type: String,
         required: [true, 'Name is mandatory']
@@ -18,16 +15,12 @@ module.exports = mongoose.model('Food', {
         type: String,
         required: [true, 'Category is mandatory']
     },
-    description: {
-        type: String,
-        required: [true, 'Description is mandatory']
-    },
     createdAt: {
         type: Date,
         default: Date.now
     },
     owner: {
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     },
     location: {
