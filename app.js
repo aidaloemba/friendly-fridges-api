@@ -13,7 +13,8 @@ require("dotenv").config();
 var session = require('express-session');
 var morgan = require('morgan');
 const MongoStore = require('connect-mongo')(session);
-
+const User = require("./models/User")
+const Food = require("./models/Food")
 var createError = require('http-errors');
 
 
